@@ -1,0 +1,61 @@
+.topnav {
+  @include nav-gradient;
+  padding: 0;
+  #ascap-note {
+    height: 30px;
+    margin: 20px;
+  }
+
+  #ascap-logo {
+    height: 40px;
+    margin: 40px;
+    display: none;
+  }
+
+  h3 {
+    white-space: nowrap;
+  }
+
+  .helpcenter {
+    margin-right: 40px;
+     > span {
+       white-space: nowrap;
+     }
+    .help-btn {
+      border: 2px solid $font-color-light;
+      background: transparent;
+      text-transform: uppercase;
+      color: $font-color-light;
+      font-family: $font-bold;
+      padding: 8px 20px;
+      line-height: 18px;
+      transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      display: none;
+      &:hover {
+        background: hsla(0, 0%, 100%, 0.9);
+        color: #175da7;
+      }
+    }
+  }
+
+  @media (min-width: 540px) {
+    .helpcenter {
+      .help-btn {
+        display: inline-block;
+      }
+      .help-icon {
+        display: none;
+      }
+    }
+
+    #ascap-note {
+      display: none;
+    }
+    #ascap-logo {
+      display: inline-block;
+    }
+  }
+}
