@@ -1,0 +1,27 @@
+$font-black: 'Circular Black', sans-serif;
+$font-medium: 'Circular Medium', sans-serif;
+$font-book: 'Circular Book', sans-serif;
+$font-bold: 'Circular Bold', sans-serif;
+$base-font-color: #000;
+$font-color-light: #fff;
+$base-background-color: #fff;
+$accent-color: #1178ce;
+$accent-color-dark: #175da5;
+$grad-color-1: #489cef;
+$grad-color-2: #175da5;
+$disabled-color: #85868c;
+$font-color-dark: #6d6d6d;
+$font-color-dark2: #0d0d0d;
+$btn-cancel-hover-color: #fafafa;
+$base-font-size: 14px;
+$mobile-font-size: 16px;
+
+@mixin card-shadow {
+  -webkit-box-shadow: 0 0 15px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 15px -1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px -1px rgba(0, 0, 0, 0.5);
+}
+
+@mixin nav-gradient {
+  background-image: linear-gradient(-135deg, $grad-color-1, $grad-color-2);
+}

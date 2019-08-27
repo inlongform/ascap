@@ -1,28 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container, Form, Row, Col, Card } from 'reactstrap';
+import { Container, Form } from 'reactstrap';
 import TopNav from './topnav/TopNav';
+import Membership from './sections/Membership';
 
 
 class App extends PureComponent {
   render() {
-
-
     return (
       <main>
         <TopNav />
         <Container>
           <Form>
-            <section>
-              <h2>Membership</h2>
-              <p className="pb-4">Select your membership type below:</p>
-              <Row>
-                <Col lg="4">
-                  <Card>hello</Card>
-                </Col>
-              </Row>
-            </section>
+            <Membership />
           </Form>
         </Container>
       </main>
