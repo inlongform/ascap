@@ -1,0 +1,24 @@
+button.btn {
+  font-family: $font-bold;
+  color: $font-color-light;
+  background-color: $accent-color;
+  border: none;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 2px;
+  margin-right: 10px;
+  -webkit-transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-in-out;
+  &.cancel {
+    color: $font-color-dark2;
+    background-color: transparent;
+    border: 1px solid #cecece;
+    &:hover {
+      background-color: $btn-cancel-hover-color;
+    }
+  }
+  &:hover, 
+  &:focus {
+    background-color: $accent-color-dark;
+  }
+}

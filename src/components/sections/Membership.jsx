@@ -1,64 +1,136 @@
-import React, { PureComponent } from 'react';
-import { Row, Col } from 'reactstrap';
-import MemberCard from '../common/MemberCard';
-import Btn from '../common/Btn';
-import data from '../../data/data';
+import React, { Component } from 'react';
+import { Row, Col, CardText } from 'reactstrap';
+import PropTypes from 'prop-types';
+import {
+  MemberCard, Btn, Select, Enumeration, ErrorText,
+} from '../common';
 
-class Membership extends PureComponent {
+import data from '../data/data';
+
+class Membership extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: '',
+      publisherSelect: '',
+      selectVisible: false,
+      cardError: false,
+      selectError: false,
+    };
+    this.cardClick = this.cardClick.bind(this);
+    this.onSelectChange = this.onSelectChange.bind(this);
+    this.validate = this.validate.bind(this);
+  }
+
+
+  onSelectChange(e) {
+    this.setState({
+      publisherSelect: e.target.value,
+      selectError: false,
+    });
+  }
+
+  cardClick(id) {
+    const { membership } = data;
+    const { cards } = membership;
+
+    const filtered = cards.filter((i) => i.header.id === id)[0];
+
+    this.setState({
+      selected: id,
+      selectVisible: filtered.showSelect,
+      cardError: false,
+    });
+  }
+
+  validate(e) {
+    e.preventDefault();
+    const { selected, publisherSelect, selectVisible } = this.state;
+
+    if (selected === '') {
+      this.setState({
+        cardError: true,
+      });
+
+      return;
+    }
+
+    if (publisherSelect === '' && selectVisible) {
+      this.setState({
+        selectError: true,
+      });
+
+      return;
+    }
+
+    alert('all done');
+  }
+
   render() {
+    const { sectionNum } = this.props;
+    const { membership } = data;
+    const {
+      cards, age, tincheck, publisherOptions,
+    } = membership;
+    const {
+      selected, selectVisible, cardError, selectError,
+    } = this.state;
+
+
     return (
       <section>
-        <h2 className="font-black">Membership</h2>
+        <Enumeration num={sectionNum} />
         <p className="pb-4">Select your membership type below:</p>
-        <Row className="mb-4">
+        <Row className={`mb-2 card-container ${(cardError) ? 'error' : ''}`}>
           {
-            data.map((i) => (
-              <Col lg="4" key={i.title}>
-                <MemberCard data={i} />
+            cards.map((i) => (
+              <Col lg="4" key={i.header.title} className="card-bottom-margin">
+                <MemberCard handler={this.cardClick} headerData={i.header} selectedId={selected}>
+                  <CardText>
+                    {i.copy}
+                  </CardText>
+                  <h4 className="font-bold">
+                    {i.fee} Application Fee
+                  </h4>
+                  {i.requirements}
+                </MemberCard>
               </Col>
             ))
           }
         </Row>
         <Row>
           <Col>
-            <p className="font-small">
-              *If you are under 18 years of age please&nbsp;
-              <a
-                href="/helpcenter#underAge"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                read more about how to join ASCAP.
-              </a>
-            </p>
-            <p className="font-small">
-              ASCAP uses TINCheck and SmartyStreets to verify certain
-              information provided by you in connection with your application.
-              Any information processed by TINCheck and SmartyStreets shall be
-              subject to the privacy policies of
-              {' '}
-              <a
-                href="https://www.tincheck.com/pages/tincheck-agreement"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                TINCheck
-              </a>
-              {' '}
-              and
-              {' '}
-              <a
-                href="https://smartystreets.com/legal/privacy-policy"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                SmartyStreets
-              </a>
-              .
-            </p>
-            <div>
-              <Btn className="cancel">Cancel</Btn>
-              <Btn>Continue</Btn>
+            {
+            (cardError) ? (
+              <ErrorText text="Please select your membership type." />
+            ) : null
+            }
+
+            {age}
+            {
+              (selectVisible) ? (
+                <div className="publisher-select-container">
+                  <h4>Publisher Company Type</h4>
+                  <p className="mb-0">Please select the federal tax classification of your publisher company.</p>
+                  <Row className="select-container">
+                    <Col lg="8">
+                      <Select options={publisherOptions} handler={this.onSelectChange} />
+
+                      {
+                        (selectError) ? (
+                          <ErrorText text="Please select your publisher company type." />
+                        ) : null
+                      }
+                    </Col>
+                  </Row>
+                </div>
+              ) : null
+            }
+            {tincheck}
+            <div className="mt-4">
+              <Btn classNames="cancel" href="https://www.ascap.com/">Cancel</Btn>
+              <Btn handler={this.validate}>Continue</Btn>
             </div>
           </Col>
         </Row>
@@ -66,5 +138,13 @@ class Membership extends PureComponent {
     );
   }
 }
+
+Membership.defaultProps = {
+  sectionNum: '1',
+};
+
+Membership.propTypes = {
+  sectionNum: PropTypes.string,
+};
 
 export default Membership;

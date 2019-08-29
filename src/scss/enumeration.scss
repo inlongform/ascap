@@ -1,0 +1,41 @@
+.ennumeration {
+  position: absolute;
+  left: 13px;
+  margin: 4px 0 0;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background: $base-background-color;
+  color: $font-color-light;
+  text-align: center;
+  font-size: 12px;
+  line-height: 25px;
+
+  &::before {
+    top: -8px;
+    left: -8px;
+    width: 41px;
+    height: 41px;
+    background: $base-background-color;
+  }
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  &::after {
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background: $accent-color;
+  }
+
+  .section-number {
+    position: relative;
+    z-index: 2;
+  }
+}

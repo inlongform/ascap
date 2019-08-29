@@ -1,84 +1,38 @@
-## Available Scripts
+### Available Scripts
 
 * npm start // run in dev mode
 * npm test // run unit tests
 * npm run test:watch // run unit tests in watch mode
 * npm run build // build for production
 
-# OkCupid Take-Home Exercise
+#### Task
 
-Welcome to the OkCupid take-home exercise! This will roughly model the type of
-projects you'd work on at OkCupid.
+What we would like is for you to reverse engineer and recreate the entire Membership section of OME. This section consists of three Membership type cards that the user can select. It includes validation that ensures the user has selected a card before being able to continue. If the user selects the "Writer & Publisher" or the "Publisher" card a drop-down is displayed asking the user for more information. This dropdown also has validation that does not allow the user to continue unless a selection is made. 
 
-This repository contains the structure of a React/Redux application, as well as
-a webpack setup to compile the files. We'd like you to use them to implement a
-feature for us.
+ 
 
-Approach this exercise as if you worked here: make sure your code is clear and
-concise, and use your time wisely.
+Things to consider when recreating the Membership section of OME:
 
-## The feature
+· Javascript Library/Framework (your choice of React, Vue, Vanilla)
 
-A feature of OkCupid, and one of the things that differentiates our site, is
-the essay -- a space for people to write about themselves on their profile. But
-it can be hard for users to write so freely without a prompt.
+· SASS/CSS namespacing
 
-We'd like to make writing an essay easy and fun, and one idea we had is to make
-a [Mad Libs](https://en.wikipedia.org/wiki/Mad_Libs)-style game.
+· Card Hover effects
 
-Your job is to make a small app using React/Redux and Scss which asks a user
-some simple questions, and assembles the answers into a passable essay.
+· Card and drop-down validation functionality 
 
-## How to use
+· Card and drop-down validation styles
 
-First, make sure you have a modern version of `node` and `yarn.`
+· Custom drop-down styles
 
-Run `yarn install` before getting started.
+· Cancel and continue button
 
-Make your changes to these files, then run `npm start` to run the compiler.
+· Browser compatibility (Chrome, Safari, Firefox, Edge)
 
-A new window should open; if not, you can visit your page at
-http://127.0.0.1:3000/. Any changes to the project files should trigger a new
-build, and a refresh.
+· Component reusability
 
-## What's there
+Extras (not mandatory and time permitting):
 
-* Screenshots of the app's design, in `/assets/`.
-* The main app folder, `/src/`, where you'll be making your changes.
-* A [ducks](https://medium.com/@scbarrus/the-ducks-file-structure-for-redux-d63c41b7035c#.5chqfp84p)
-  file, `/src/madlibs.js`. This file contains the reducer, the initial state,
-  along with some example actions.
-* A constants file, `/src/constants.js`. It contains the questions and
-  potential essay templates.
-* A folder for React components, `/src/components/`.
+· Mobile design
 
-## Requirements
-
-* Prompts appear in the left column, and the essay preview on the right.
-* Each "prompt" consists of a question and an input.
-* When the user blurs the input, the app should "save" their response and
-  update the essay preview.
-* To generate the essay preview, choose one of the available templates at
-  random.
-* Changing one answer should not re-roll the chosen templates of other fields.
-* The user's responses in the essay preview should be bold.
-* When the user has answered and blurred all questions, an "Edit" button
-  appears.
-* When a user clicks "Edit", replace both columns with a centered textarea
-  containing the generated essay content.
-
-Some more details:
-
-* Don't worry about vendor prefixes; target the latest version of Chrome.
-* The app should compile without any errors.
-* Create as many or as few subcomponents as you like.
-* Use whatever libraries you want. (But remember: if you worked here, we would
-  want to pay attention to payload size. Choose wisely!)
-* Eyeball the margins, paddings, and colors.
-
-## When you're done
-
-Remove the `node_modules` directory, zip up this project directory, and send it
-back to us.
-
-Thanks for your time, and good luck! We look forward to hearing from you!
+· Unit testing (Jest, Mocha, Chai)

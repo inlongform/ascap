@@ -1,56 +1,51 @@
 import React from 'react';
 import {
-  Card, CardHeader, CardBody, CardText,
+  Card, CardHeader, CardBody,
 } from 'reactstrap';
-
-import {
-  checkIcon,
-} from '../icons';
+import PropTypes from 'prop-types';
 
 
 const MemberCard = (props) => {
-  console.log(props);
-  const { data } = props;
-  const { title, copy, fee, icon } = data;
-  return (
+  const {
+    headerData, handler, children, selectedId,
+  } = props;
+  const { title, id, icon } = headerData;
 
-    <Card>
+  const cardstyle = (selectedId === id && selectedId !== '') ? 'selected' : 'unselected';
+
+  return (
+    <Card
+      className={cardstyle || ''}
+      onClick={(e) => {
+        e.preventDefault();
+        handler(id);
+      }}
+      id={id}
+    >
       <CardHeader className="font-medium d-flex justify-content-center">
-        {/* {icon} */}
+        {icon[Object.keys(icon)]}
         <span className="ml-2">{title}</span>
       </CardHeader>
       <CardBody>
-        <CardText>
-          {copy}
-        </CardText>
-        <h4 className="font-bold">$100 Application Fee</h4>
-        <p className="sub-text mb-3">non-refundable</p>
-        <h5>Requirements</h5>
-        <ul>
-          <li>
-            {checkIcon}
-            <span className="pl-2">Legal Name</span>
-          </li>
-          <li>
-            {checkIcon}
-            <span className="pl-2">Mailing Address</span>
-          </li>
-          <li>
-            {checkIcon}
-            <span className="pl-2">Valid Email Address</span>
-          </li>
-          <li>
-            {checkIcon}
-            <span className="pl-2">SSN/ITIN or EIN</span>
-          </li>
-          <li>
-            {checkIcon}
-            <span className="pl-2">Must be 18 or older*</span>
-          </li>
-        </ul>
+        {children}
       </CardBody>
     </Card>
   );
+};
+
+MemberCard.defaultProps = {
+  selectedId: '',
+};
+
+MemberCard.propTypes = {
+  headerData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    icon: PropTypes.objectOf(PropTypes.element),
+  }).isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  handler: PropTypes.func.isRequired,
+  selectedId: PropTypes.string,
 };
 
 export default MemberCard;

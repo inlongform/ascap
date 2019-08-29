@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
-    "linebreak-style": [0, "error", "windows"]
+    "linebreak-style": [0, "error", "windows"],
+    "react/jsx-one-expression-per-line": "off"
   }
 };

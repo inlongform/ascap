@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Container, Form } from 'reactstrap';
 import TopNav from './topnav/TopNav';
 import Membership from './sections/Membership';
@@ -11,9 +9,10 @@ class App extends PureComponent {
     return (
       <main>
         <TopNav />
-        <Container>
+        <Container className="position-relative">
           <Form>
-            <Membership />
+            <Membership sectionNum="1" />
+            {/* add other sections as needed */}
           </Form>
         </Container>
       </main>
@@ -21,10 +20,5 @@ class App extends PureComponent {
   }
 }
 
-App.propTypes = {
-  // showComplete: PropTypes.bool.isRequired,
-};
 
-const mapStateToProps = (state) => state;
-
-export default connect(mapStateToProps)(App);
+export default App;

@@ -1,35 +1,82 @@
-.card {
-  .card-header {
-    color: #004183;
-    background: linear-gradient(-180deg, #fafafa 0%, #ededed 100%);
-    transition: all 0.5s;
-    padding: 16px 16px;
-    font-size: 1.25em;
-    line-height: 1.3;
-  }
-  h4 {
-    color: $accent-color-dark;
-    font-size: 16px;
-    text-transform: uppercase;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-    li {
-      margin-bottom: 16px;
-      .check-icon {
-        vertical-align: sub;
-        width: 1.13em;
-        height: 1.13em;
-        stroke-width: 2px;
+
+.card-container {
+  &.error {
+    .card {
+      border: 1px solid $error-color;
+      .card-header {
+        border-bottom: 1px solid $error-color;
       }
     }
   }
-  &:hover {
+  .card {
+    border: 1px solid $card-border-color;
+    transition: all .5s;
+    cursor: pointer;
+    &.selected, &:hover {
+      @include card-shadow;
+      .card-header {
+        background: $accent-color;
+        color: $font-color-light;
+      }
+  
+      &:hover {
+        .card-header {
+          background: $accent-color;
+          color: $font-color-light;
+        }
+      }
+    }
+  
+    &.unselected {
+      opacity: .7;
+      .card-header {
+        color: $card-border-color;
+      }
+  
+      &:hover {
+        opacity: 1;
+        .card-header {
+          background: $base-background-color linear-gradient(-180deg,rgba(255,255,255,0) 0%,rgba(17,120,206,.03) 100%);
+          color: $card-header-color;
+        }
+        
+      }
+    }
     .card-header {
-      background: $base-background-color;
-      cursor: pointer;
+      color: $card-header-color;
+      background: linear-gradient(-180deg, #fafafa 0%, #ededed 100%);
       transition: all 0.5s;
+      padding: 16px 16px;
+      font-size: 1.25em;
+      line-height: 1.3;
+      border-bottom: 1px solid $card-border-color;
+    }
+    h4 {
+      color: $accent-color-dark;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: 16px;
+        .check-icon {
+          vertical-align: sub;
+          width: 1.13em;
+          height: 1.13em;
+          stroke-width: 2px;
+        }
+      }
+    }
+    &:hover {
+      border: 1px solid $card-border-hover-color;
+      .card-header {
+        background: $base-background-color;
+        cursor: pointer;
+        transition: all 0.5s;
+        border-bottom: 1px solid $card-border-hover-color;
+      }
     }
   }
 }

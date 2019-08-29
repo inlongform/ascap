@@ -28,3 +28,11 @@ h2 {
     margin-bottom: 0.33em;
   }
 }
+
+h4 {
+  font-family: $font-bold;
+  @media (min-width: 540px) {
+    font-size: 1.25em;
+    line-height: 1.3;
+  }
+}
