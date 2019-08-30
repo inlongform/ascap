@@ -1,12 +1,23 @@
+import React from 'react';
 
 import {
   publisherIcon,
   writerIcon,
   writerPublisherIcon,
 } from '../icons';
-import requirements from './Requirements';
+import Requirements from './Requirements';
 import age from './Age';
 import tincheck from './Tincheck';
+
+const reqItems = [
+  'Legal Name',
+  'Mailing Address',
+  'Valid Email Address',
+  'SSN/ITIN or EIN',
+  'Must be 18 or older*',
+];
+
+const requirements = (<Requirements data={reqItems} />);
 
 
 const data = {
